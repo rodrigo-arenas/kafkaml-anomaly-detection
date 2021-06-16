@@ -3,16 +3,14 @@ import os
 from joblib import load
 import logging
 
-
 from streaming.utils import create_producer, create_consumer
-from settings import ANOMALIES_TOPIC, TRANSACTIONS_CONSUMER_GROUP
-
+from settings import TRANSACTIONS_TOPIC, TRANSACTIONS_CONSUMER_GROUP, ANOMALIES_TOPIC
 
 model_path = os.path.abspath('../model/isolation_forest.joblib')
 
 clf = load(model_path)
 
-consumer = create_consumer(topic=ANOMALIES_TOPIC, group_id=TRANSACTIONS_CONSUMER_GROUP)
+consumer = create_consumer(topic=TRANSACTIONS_TOPIC, group_id=TRANSACTIONS_CONSUMER_GROUP)
 
 producer = create_producer()
 
@@ -31,8 +29,7 @@ while True:
     prediction = clf.predict(data)
     score = clf.score_samples(data)
     record["score"] = score.tolist()
-    print(record)
-
+    print(prediction)
     # If an anomaly comes in, send it to anomalies topic
     if prediction[0] == -1:
 
