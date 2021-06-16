@@ -29,7 +29,7 @@ while True:
     prediction = clf.predict(data)
     score = clf.score_samples(data)
     record["score"] = score.tolist()
-    print(prediction)
+
     # If an anomaly comes in, send it to anomalies topic
     if prediction[0] == -1:
 
