@@ -1,31 +1,20 @@
 import json
 import os
 from joblib import load
-import socket
 import logging
 
-from confluent_kafka import Consumer
 
-from streaming.producer import create_producer
-from settings import KAFKA_BROKER, ANOMALIES_TOPIC
+from streaming.utils import create_producer, create_consumer
+from settings import ANOMALIES_TOPIC, TRANSACTIONS_CONSUMER_GROUP
 
 
 model_path = os.path.abspath('../model/isolation_forest.joblib')
 
 clf = load(model_path)
 
-consumer = Consumer({"bootstrap.servers": KAFKA_BROKER,
-                     "group.id": "transactions_reader",
-                     "auto.offset.reset": "earliest",
-                     "client.id": socket.gethostname(),
-                     "isolation.level": "read_committed",
-                     "enable.auto.commit": False
-                     })
-
-consumer.subscribe(["transactions"])
+consumer = create_consumer(topic=ANOMALIES_TOPIC, group_id=TRANSACTIONS_CONSUMER_GROUP)
 
 producer = create_producer()
-
 
 while True:
     message = consumer.poll()
@@ -42,6 +31,7 @@ while True:
     prediction = clf.predict(data)
     score = clf.score_samples(data)
     record["score"] = score.tolist()
+    print(record)
 
     # If an anomaly comes in, send it to anomalies topic
     if prediction[0] == -1:
