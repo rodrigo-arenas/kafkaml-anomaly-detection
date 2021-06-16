@@ -32,7 +32,7 @@ if __name__ == "__main__":
     if producer is not None:
         while True:
             # Generate some abnormal novel observations
-            X_outliers = rng.uniform(low=-4, high=4, size=(1, 2)).tolist()
+            X_outliers = rng.uniform(low=-3, high=3, size=(1, 2)).tolist()
 
             record = {"id": _id, "data": X_outliers}
             record = json.dumps(record).encode("utf-8")
