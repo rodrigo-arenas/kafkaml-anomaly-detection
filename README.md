@@ -6,10 +6,14 @@ It's assumed that zookeeper and kafka are running in the localhost, it follows t
 - Train an unsupervised machine learning model for anomalies detection
 - Save the model to be used in real time predictions
 - Generate fake streaming data and send it to a kafka topic
-- Read the topic data to be analyzed by the model
+- Read the topic data with several subscribers to be analyzed by the model
 - Predict if the data is an anomaly, if so, send the data to another kafka topic
 - Subscribe a slack bot to the last topic to send a message in slack channel if
 an anomaly arrives
+
+This could be illustrated as:
+
+![Diagram](./docs/kafka_anomalies.png?style=centerme)
 
 # Demo
 Generate fake transactions into a kafka topic:
