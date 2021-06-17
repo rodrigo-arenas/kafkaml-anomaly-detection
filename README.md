@@ -18,6 +18,11 @@ Generate fake transactions into a kafka topic:
 Predict and send anomalies to another kafka topic
 ![Anomalies](./docs/anomalies.gif)
 
+Producer and anomaly detection running at the same time
+
+![Concurrent](./docs/concurrent.gif)
+
+
 Send notifications to Slack
 ![Slack](./docs/slack_alerts.gif)
 
