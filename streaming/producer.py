@@ -3,7 +3,7 @@ import time
 
 import numpy as np
 
-from settings import TRANSACTIONS_TOPIC
+from settings import TRANSACTIONS_TOPIC, DELAY
 from streaming.utils import create_producer
 
 _id = 0
@@ -23,4 +23,4 @@ if producer is not None:
                          key=str(_id))
         producer.flush()
         _id += 1
-        time.sleep(1)
+        time.sleep(DELAY)
