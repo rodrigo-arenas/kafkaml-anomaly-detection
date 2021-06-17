@@ -24,10 +24,10 @@ def create_consumer(topic, group_id):
     try:
         consumer = Consumer({"bootstrap.servers": KAFKA_BROKER,
                              "group.id": group_id,
-                             "auto.offset.reset": "latest",
                              "client.id": socket.gethostname(),
                              "isolation.level": "read_committed",
-                             "default.topic.config": {"enable.auto.commit": False}
+                             "default.topic.config": {"auto.offset.reset": "latest",
+                                                      "enable.auto.commit": False}
                              })
 
         consumer.subscribe([topic])

@@ -27,11 +27,11 @@ while True:
     data = record["data"]
 
     prediction = clf.predict(data)
-    score = clf.score_samples(data)
-    record["score"] = score.tolist()
 
     # If an anomaly comes in, send it to anomalies topic
     if prediction[0] == -1:
+        score = clf.score_samples(data)
+        record["score"] = score.tolist()
 
         _id = str(record["id"])
         record = json.dumps(record).encode("utf-8")
@@ -41,6 +41,6 @@ while True:
                          key=_id)
         producer.flush()
 
-    consumer.commit()
+    # consumer.commit() # Uncomment to process all messages, not just new ones
 
 consumer.close()
