@@ -27,7 +27,7 @@ def create_consumer(topic, group_id):
                              "auto.offset.reset": "latest",
                              "client.id": socket.gethostname(),
                              "isolation.level": "read_committed",
-                             "enable.auto.commit": False
+                             "default.topic.config": {"enable.auto.commit": False}
                              })
 
         consumer.subscribe([topic])
