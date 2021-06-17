@@ -3,6 +3,8 @@ import os
 from joblib import load
 import logging
 
+import numpy as np
+
 from streaming.utils import create_producer, create_consumer
 from settings import TRANSACTIONS_TOPIC, TRANSACTIONS_CONSUMER_GROUP, ANOMALIES_TOPIC
 
@@ -31,7 +33,7 @@ while True:
     # If an anomaly comes in, send it to anomalies topic
     if prediction[0] == -1:
         score = clf.score_samples(data)
-        record["score"] = score.tolist()
+        record["score"] = np.round(score, 3).tolist()
 
         _id = str(record["id"])
         record = json.dumps(record).encode("utf-8")
