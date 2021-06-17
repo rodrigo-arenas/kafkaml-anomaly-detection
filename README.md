@@ -11,6 +11,16 @@ It's assumed that zookeeper and kafka are running in the localhost, it follows t
 - Subscribe a slack bot to the last topic to send a message in slack channel if
 an anomaly arrives
 
+# Demo
+Generate fake transactions into a kafka topic:
+![Transactions](./docs/transactions_producer.gif)
+
+Predict and send anomalies to another kafka topic
+![Anomalies](./docs/anomalies.gif)
+
+Send notifications to Slack
+![Slack](./docs/slack_alerts.gif)
+
 # Usage:
 
 * First train the anomaly detection model, run the file:
