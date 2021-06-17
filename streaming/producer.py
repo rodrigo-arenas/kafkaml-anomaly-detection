@@ -12,8 +12,8 @@ producer = create_producer()
 if producer is not None:
     while True:
         # Generate some abnormal observations
-        X = 0.3 * np.random.rand(1, 2)
-        X_test = (X + np.random.uniform(low=-1.5, high=1.5)).tolist()
+        X = 0.3 * np.random.randn(1, 2)
+        X_test = (X + np.random.choice(a=[3, 2, -2], size=1, p=[0.25, 0.35, 0.4])).tolist()
 
         record = {"id": _id, "data": X_test}
         record = json.dumps(record).encode("utf-8")
