@@ -14,7 +14,7 @@ if producer is not None:
     while True:
         # Generate some abnormal observations
         X = 0.3 * np.random.randn(1, 2)
-        X_test = (X + np.random.choice(a=[3, 2, -2], size=1, p=[0.05, 0.45, 0.5]))
+        X_test = (X + np.random.choice(a=[3, 2, -2], size=1, p=[0.03, 0.47, 0.5]))
         X_test = np.round(X_test, 3).tolist()
 
         current_time = datetime.utcnow().isoformat()
