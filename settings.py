@@ -8,6 +8,7 @@ load_dotenv(dotenv_path)
 
 DELAY = 0.03
 NUM_PARTITIONS = 3
+OUTLIERS_GENERATION_PROBABILITY = 0.2
 KAFKA_BROKER = "localhost:9092"
 TRANSACTIONS_TOPIC = "transactions"
 TRANSACTIONS_CONSUMER_GROUP = "transactions"
