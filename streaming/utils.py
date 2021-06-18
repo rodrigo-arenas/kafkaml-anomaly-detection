@@ -14,7 +14,7 @@ def create_producer():
                              "compression.type": "lz4",
                              "batch.size": 64000,
                              "linger.ms": 10,
-                             "acks": "all",  # Wait for kafka-server-start.sh config/server.propertiesleader and all ISR to send response back
+                             "acks": "all",  # Wait for the leader and all ISR to send response back
                              "retries": 5,
                              "delivery.timeout.ms": 1000})  # Total time to make retries
     except Exception as e:
@@ -29,7 +29,7 @@ def create_consumer(topic, group_id):
                              "group.id": group_id,
                              "client.id": socket.gethostname(),
                              "isolation.level": "read_committed",
-                             "default.topic.config": {"auto.offset.reset": "latest",
+                             "default.topic.config": {"auto.offset.reset": "latest", # Only consume new messages
                                                       "enable.auto.commit": False}
                              })
 
