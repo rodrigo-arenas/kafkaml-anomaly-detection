@@ -11,7 +11,10 @@ def create_producer():
         producer = Producer({"bootstrap.servers": KAFKA_BROKER,
                              "client.id": socket.gethostname(),
                              "enable.idempotence": True,  # EOS processing
-                             "acks": "all",  # Wait for leader and all ISR to send response back
+                             "compression.type": "lz4",
+                             "batch.size": 64000,
+                             "linger.ms": 10,
+                             "acks": "all",  # Wait for kafka-server-start.sh config/server.propertiesleader and all ISR to send response back
                              "retries": 5,
                              "delivery.timeout.ms": 1000})  # Total time to make retries
     except Exception as e:
