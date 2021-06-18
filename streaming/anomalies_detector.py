@@ -42,8 +42,7 @@ def detect():
             record = json.dumps(record).encode("utf-8")
 
             producer.produce(topic=ANOMALIES_TOPIC,
-                             value=record,
-                             key=_id)
+                             value=record)
             producer.flush()
 
         # consumer.commit() # Uncomment to process all messages, not just new ones

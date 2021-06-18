@@ -27,8 +27,7 @@ if producer is not None:
         record = json.dumps(record).encode("utf-8")
 
         producer.produce(topic=TRANSACTIONS_TOPIC,
-                         value=record,
-                         key=str(_id))
+                         value=record)
         producer.flush()
         _id += 1
         time.sleep(DELAY)
