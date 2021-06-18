@@ -11,16 +11,16 @@ from settings import TRANSACTIONS_TOPIC, TRANSACTIONS_CONSUMER_GROUP, ANOMALIES_
 
 model_path = os.path.abspath('../model/isolation_forest.joblib')
 
-clf = load(model_path)
-
 
 def detect():
     consumer = create_consumer(topic=TRANSACTIONS_TOPIC, group_id=TRANSACTIONS_CONSUMER_GROUP)
 
     producer = create_producer()
 
+    clf = load(model_path)
+
     while True:
-        message = consumer.poll()
+        message = consumer.poll(timeout=50)
         if message is None:
             continue
         if message.error():
