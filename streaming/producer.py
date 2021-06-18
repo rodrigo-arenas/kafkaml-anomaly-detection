@@ -15,11 +15,12 @@ if producer is not None:
     while True:
         # Generate some abnormal observations
         if random.random() <= OUTLIERS_GENERATION_PROBABILITY:
-            X_test = np.random.uniform(low=-4, high=4, size=(1, 2)).tolist()
+            X_test = np.random.uniform(low=-4, high=4, size=(1, 2))
         else:
             X = 0.3 * np.random.randn(1, 2)
             X_test = (X + np.random.choice(a=[2, -2], size=1, p=[0.5, 0.5]))
-            X_test = np.round(X_test, 3).tolist()
+
+        X_test = np.round(X_test, 3).tolist()
 
         current_time = datetime.utcnow().isoformat()
 
