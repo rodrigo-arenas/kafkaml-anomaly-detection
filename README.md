@@ -15,6 +15,9 @@ This could be illustrated as:
 
 ![Diagram](./docs/kafka_anomalies.png?style=centerme)
 
+Article explaining how to run this project: [medium](https://towardsdatascience.com/real-time-anomaly-detection-with-apache-kafka-and-python-3a40281c01c9)
+
+
 # Demo
 Generate fake transactions into a kafka topic:
 ![Transactions](./docs/transactions_producer.gif)
