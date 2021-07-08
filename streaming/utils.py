@@ -35,7 +35,7 @@ def create_consumer(topic, group_id):
 
         consumer.subscribe([topic])
     except Exception as e:
-        logging.exception("Couldn't create the producer")
+        logging.exception("Couldn't create the consumer")
         consumer = None
 
     return consumer
