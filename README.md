@@ -1,10 +1,10 @@
 # kafkaml-anomaly-detection
-Project for real time anomaly detection using kafka and python
+Project for real-time anomaly detection using kafka and python
 
 It's assumed that zookeeper and kafka are running in the localhost, it follows this process:
 
 - Train an unsupervised machine learning model for anomalies detection
-- Save the model to be used in real time predictions
+- Save the model to be used in real-time predictions
 - Generate fake streaming data and send it to a kafka topic
 - Read the topic data with several subscribers to be analyzed by the model
 - Predict if the data is an anomaly, if so, send the data to another kafka topic
